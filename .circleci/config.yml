@@ -21,11 +21,13 @@ jobs:
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
+          command: mvn -B -DskipTests clean install
+          working_directory: CAS_TEST_BOOT 
       # Then run your tests!
       - run:
           name: Test
-          command: mvn test
+          command: java -jar CAS_TEST_BOOT-0.0.1-SNAPSHOT.jar
+          working_directory: CAS_TEST_BOOT/target
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
